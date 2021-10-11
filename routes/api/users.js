@@ -2,6 +2,9 @@
 const express = require('express')
 const router = express.Router()
 
+//Load user model 
+const User = require('../../models/User')
+
 //@route  GET api/user/test
 //@desc   Tests user route
 //@acces  Private
