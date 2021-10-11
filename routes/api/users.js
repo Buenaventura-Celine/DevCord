@@ -16,7 +16,7 @@ router.get('/test', (req, res) => res.json({
 //@desc   Register user
 //@acces  Public
 router.post('/register', (req, res) => {
-
+    User.findOne({email: req.body.email})
 })
 
 module.exports = router;
