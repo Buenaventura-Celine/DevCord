@@ -1,6 +1,7 @@
 //just going to deal with authentication, username, email, and password.
 const express = require('express')
 const router = express.Router()
+const gravatar = require('gravatar')
 
 //Load user model 
 const User = require('../../models/User')
