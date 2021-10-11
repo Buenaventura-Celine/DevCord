@@ -2,11 +2,18 @@
 const express = require('express')
 const router = express.Router()
 
-//@route  GET api/profile/test
+//@route  GET api/user/test
 //@desc   Tests user route
 //@acces  Private
 router.get('/test', (req, res) => res.json({
     message: 'Users Route work'
 }))
+
+//@route  GET api/user/register
+//@desc   Register user
+//@acces  Public
+router.post('/register', (req, res) => {
+
+})
 
 module.exports = router;
