@@ -53,6 +53,8 @@ router.post('/register', (req, res) => {
 //@desc   Login user/Returning JWT Token
 //@acces  Public
 router.post('login', (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
 
 })
 
