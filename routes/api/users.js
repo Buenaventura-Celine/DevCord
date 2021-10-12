@@ -66,6 +66,13 @@ router.post('login', (req, res) => {
 
             //Check password
             bcrypt.compare(password, user.password) 
+                .then(isMatch => {
+                    if(isMatch){
+                        res.json({ msg: 'Success' })
+                    }else{
+                        return res.status(400).json({ password: 'Incorrect Password' })
+                    }
+                })
         })
 })
 
