@@ -49,4 +49,11 @@ router.post('/register', (req, res) => {
         })
 })
 
+//@route  GET api/user/login
+//@desc   Login user/Returning JWT Token
+//@acces  Public
+router.post('login', (req, res) => {
+
+})
+
 module.exports = router;
