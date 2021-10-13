@@ -78,7 +78,16 @@ router.post('/login', (req, res) => {
 
                         }
                         //generate token
-                        jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 })
+                        jwt.sign(
+                            payload, 
+                            keys.secretOrKey, 
+                            { expiresIn: 3600 }, 
+                            (err, token) => {
+                                res.json({
+                                    success: true, 
+                                    token: 'Bearer ' + token
+                                })
+                            })
                     }else{
                         return res.status(400).json({ password: 'Incorrect Password' })
                     }
