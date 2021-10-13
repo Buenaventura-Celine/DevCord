@@ -70,6 +70,12 @@ router.post('/login', (req, res) => {
                 .then(isMatch => {
                     if(isMatch){
                         //User Matched
+                        const payload = {
+                            id : user.id,
+                            name : user.name,
+                            avatar : user.avatar
+
+                        }
                     }else{
                         return res.status(400).json({ password: 'Incorrect Password' })
                     }
