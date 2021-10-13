@@ -3,6 +3,7 @@ const express = require('express')
 const router = express.Router()
 const gravatar = require('gravatar')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 //Load user model 
 const User = require('../../models/User')
@@ -52,7 +53,7 @@ router.post('/register', (req, res) => {
 //@route  GET api/user/login
 //@desc   Login user/Returning JWT Token
 //@acces  Public
-router.post('login', (req, res) => {
+router.post('/login', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
