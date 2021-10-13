@@ -77,6 +77,8 @@ router.post('/login', (req, res) => {
                             avatar : user.avatar
 
                         }
+                        //generate token
+                        jwt.sign(payload, keys.secretOrKey)
                     }else{
                         return res.status(400).json({ password: 'Incorrect Password' })
                     }
