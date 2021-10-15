@@ -10,6 +10,9 @@ const passport = require('passport')
 //Load user model 
 const User = require('../../models/User')
 
+//Load input validation
+const validateRegisterInput = require('../../validation/register')
+
 //@route  GET api/user/test
 //@desc   Tests user route
 //@acces  Private
