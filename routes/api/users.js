@@ -25,7 +25,12 @@ router.get('/test', (req, res) => res.json({
 //@acces  Public
 router.post('/register', (req, res) => {
     const { error, isValid } = validateRegisterInput(req.body)
-    
+
+    //Check validation
+    if(!isValid){
+        return res.json(400).json(errors);
+    }
+
     User.findOne({ email: req.body.email })
         .then(user => {
             if(user){
