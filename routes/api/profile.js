@@ -2,6 +2,8 @@
 //just going to deal with authentication, username, email, and password.
 const express = require('express')
 const router = express.Router()
+const mongoose = require('mongoose')
+const passport = require('passport')
 
 //@route  GET api/profile/test
 //@desc   Tests profile route
@@ -9,5 +11,7 @@ const router = express.Router()
 router.get('/test', (req, res) => res.json({
     message: 'Profile Route work'
 }))
+
+
 
 module.exports = router;
