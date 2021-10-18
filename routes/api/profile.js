@@ -30,7 +30,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
             }
             res.json(profile);
         })
-        .catch(err => res.status(404).json(err))
+        .catch(err  => res.status(404).json(err))
 })
 
 module.exports = router;
