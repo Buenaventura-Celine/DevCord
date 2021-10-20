@@ -33,4 +33,12 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
         .catch(err  => res.status(404).json(err))
 })
 
+//@route  POST api/profile/
+//@desc   Create user profile
+//@acces  Private
+router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+    //Get fields 
+    const profileFields = {};
+})
+
 module.exports = router;
