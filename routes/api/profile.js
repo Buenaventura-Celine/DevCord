@@ -81,6 +81,9 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
                             errors.handle = 'That handle already exists'
                             res.status(400).json(errors)
                         }
+
+                        //Save Profile
+                        new Profile(profileFields).save().then(profile => res.json(profile))
                     })
             }
         })
