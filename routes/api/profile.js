@@ -39,6 +39,8 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
 router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
     //Get fields 
     const profileFields = {};
+    profileFields.user = req.user.id
+    if(req.body.handle) profileFields.handle = req.body.handle;
 })
 
 module.exports = router;
