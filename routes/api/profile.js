@@ -65,6 +65,13 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
         .then(profile => {
             if(profile){
                 //Update
+                Profile.findOneAndUpdate(
+                    { user: req.user.id },
+                    { $set: profileFields },
+                    { new: true }
+                ).then(
+                    profile => res.json(profile)
+                )
             }else{
                 //Create
             }
