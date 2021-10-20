@@ -74,6 +74,14 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
                 )
             }else{
                 //Create
+                //Check if handle exists
+                Profile.findOne({ handle: profileFields.handle })
+                    .then(profile => {
+                        if(profile){
+                            errors.handle = 'That handle already exists'
+                            res.status(400).json(errors)
+                        }
+                    })
             }
         })
 })
