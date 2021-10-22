@@ -35,6 +35,13 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
         .catch(err  => res.status(404).json(err))
 })
 
+//@route  GET api/profile/all
+//@desc   Get profile profiles
+//@acces  Public
+router.get('/all', (req, res) => {
+    
+})
+
 //@route  GET api/profile/handle/:handle
 //@desc   Get profile by handle
 //@acces  Public
@@ -66,7 +73,7 @@ router.get('/user/:user_id', (req, res) => {
             }
             res.json(profile)
         })
-        .catch(err => res.status(404).json(err))
+        .catch(err => res.status(404).json({ profile: 'There is no profile for this user' }))
 })
 
 //@route  POST api/profile/
