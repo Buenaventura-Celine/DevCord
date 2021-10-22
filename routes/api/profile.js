@@ -39,7 +39,8 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
 //@desc   Get profile by handle
 //@acces  Public
 router.get('/handle/:handle', (req, res) => {
-    
+    Profile.findOne({ handle: req.params.handle })
+        .populate('user', ['name', 'avatar'])
 })
 
 //@route  POST api/profile/
