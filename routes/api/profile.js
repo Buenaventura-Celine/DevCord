@@ -182,6 +182,9 @@ router.post(
 
                 //Add to experience array
                 profile.experience.unshift(new Experience)
+
+                profile.save()
+                    .then(profile => res.json(profile))
             });
     }
 );
