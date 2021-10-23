@@ -179,6 +179,9 @@ router.post(
                     current: req.body.current,
                     description: req.body.description,
                 }
+
+                //Add to experience array
+                profile.experience.unshift(new Experience)
             });
     }
 );
