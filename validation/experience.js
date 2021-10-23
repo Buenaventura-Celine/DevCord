@@ -5,21 +5,22 @@ module.exports = function validateExperienceInput(data) {
     let errors = {}
 
     //another layer to check is the data is not empty
-    data.email = !isEmpty(data.email) ? data.email : '';
-    data.password = !isEmpty(data.password) ? data.password : '';
+    data.title = !isEmpty(data.title) ? data.title : '';
+    data.company = !isEmpty(data.company) ? data.company : '';
+    data.from = !isEmpty(data.from) ? data.from : '';
 
 
     //add another layer for validation
-    if (!Validator.isEmail(data.email)) {
-        errors.email = 'Email is invalid'
+    if (Validator.isEmpty(data.title)) {
+        errors.title = 'Job title is required'
     }
 
-    if (Validator.isEmpty(data.email)) {
-        errors.email = 'Email field is required'
+    if (Validator.isEmpty(data.company)) {
+        errors.company = 'Company is required'
     }
 
-    if (Validator.isEmpty(data.password)) {
-        errors.password = 'Password field is required'
+    if (Validator.isEmpty(data.from)) {
+        errors.from = 'Company is required'
     }
 
     return {
