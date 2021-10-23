@@ -5,6 +5,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 const validateProfileInput = require("../../validation/profile");
+const validateExperienceInput = require("../../validation/experience");
 
 //Load profile model
 const Profile = require("../../models/Profile");
@@ -164,29 +165,34 @@ router.post(
 //@route  POST api/profile/experience
 //@desc   Add experience to profile
 //@acces  Private
-router.post(
-    "/experience",
-    passport.authenticate("jwt", { session: false }),
-    (req, res) => {
-        Profile.findOne({ user: req.user.id })
-            .then((profile) => {
-                const newExp = {
-                    title: req.body.title,
-                    company: req.body.company,
-                    location: req.body.location,
-                    from: req.body.from,
-                    to: req.body.to,
-                    current: req.body.current,
-                    description: req.body.description,
-                }
+router.post('/experience', passport.authenticate("jwt", { session: false }), (req, res) => {
 
-                //Add to experience array
-                profile.experience.unshift(new Experience)
+    const { errors, isValid } = validateExperienceInput(req.body);
 
-                profile.save()
-                    .then(profile => res.json(profile))
-            });
+    //Check Validation
+    if (!isValid) {
+        //Return any errors with 400 status
+        return res.status(400).json(errors);
     }
+    Profile.findOne({ user: req.user.id })
+        .then((profile) => {
+            const newExp = {
+                title: req.body.title,
+                company: req.body.company,
+                location: req.body.location,
+                from: req.body.from,
+                to: req.body.to,
+                current: req.body.current,
+                description: req.body.description,
+            }
+
+            //Add to experience array
+            profile.experience.unshift(new Experience)
+
+            profile.save()
+                .then(profile => res.json(profile))
+        });
+}
 );
 
 module.exports = router;
