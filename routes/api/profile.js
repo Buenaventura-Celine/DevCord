@@ -229,4 +229,15 @@ router.post('/education', passport.authenticate("jwt", { session: false }), (req
 }
 );
 
+//@route  DELETE api/profile/experience/exp_id
+//@desc   Delete experience from profile
+//@acces  Private
+router.delete('/experience/exp_id', passport.authenticate("jwt", { session: false }), (req, res) => {
+    Profile.findOne({ user: req.user.id })
+        .then((profile) => {
+
+        });
+}
+);
+
 module.exports = router;
