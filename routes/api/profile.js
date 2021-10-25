@@ -271,4 +271,12 @@ router.delete('/education/:edu_id', passport.authenticate("jwt", { session: fals
 }
 );
 
+//@route  DELETE api/profile
+//@desc   Delete user and profile
+//@acces  Private
+router.delete('/', passport.authenticate("jwt", { session: false }), (req, res) => {
+
+}
+);
+
 module.exports = router;
