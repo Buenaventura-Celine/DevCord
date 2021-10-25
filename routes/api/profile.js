@@ -239,6 +239,9 @@ router.delete('/experience/exp_id', passport.authenticate("jwt", { session: fals
             const removeIndex = profile.experience
                 .map(item => item.id)
                 .indexOf(req.params.exp_id)
+
+            //Splice out of array
+            profile.experience.splice(removeIndex, 1)
         });
 }
 );
