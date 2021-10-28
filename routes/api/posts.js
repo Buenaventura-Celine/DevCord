@@ -12,4 +12,11 @@ router.get('/test', (req, res) => res.json({
     message: 'Posts Route work'
 }))
 
+//@route  POST api/posts
+//@desc   Create post
+//@acces  Public
+router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+})
+
 module.exports = router;
