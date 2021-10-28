@@ -5,6 +5,8 @@ const router = express.Router()
 const mongoose = require('mongoose') //because where dealing with database
 const passport = require('passport') //for our protected route
 
+const Post = require('../../models/Post')
+
 //@route  GET api/posts/test
 //@desc   Tests post route
 //@acces  Public
