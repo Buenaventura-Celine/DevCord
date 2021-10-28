@@ -18,7 +18,12 @@ router.get('/test', (req, res) => res.json({
 //@desc   Create post
 //@acces  Public
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
-
+    const newPost = new Post({
+        text: req.body.text,
+        name: req.body.name,
+        avatar: req.body.avatar,
+        user: req.body.user,
+    })
 })
 
 module.exports = router;
