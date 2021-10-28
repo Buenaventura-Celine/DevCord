@@ -24,6 +24,8 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
         avatar: req.body.avatar,
         user: req.body.user,
     })
+    newPost.save()
+        .then(post => res.json(post))
 })
 
 module.exports = router;
