@@ -8,6 +8,7 @@ const passport = require('passport') //for our protected route
 const validatePostInput = require('../../validation/post')
 
 const Post = require('../../models/Post')
+const Profile = require('../../models/Profile')
 
 //@route  GET api/posts/test
 //@desc   Tests post route
@@ -58,7 +59,10 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 //@desc   Delete post
 //@acces  Private
 router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-
+    Profile.findOne({ user: req.user.id })
+        .then(profile => {
+            Post.findById(req.params.id)
+        })
 })
 
 module.exports = router;
