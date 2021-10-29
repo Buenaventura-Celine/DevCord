@@ -16,9 +16,16 @@ router.get('/test', (req, res) => res.json({
     message: 'Posts Route work'
 }))
 
+//@route  GET api/posts/ 
+//@desc   Get posts
+//@acces  Public
+router.get('/', (req, res) => {
+
+})
+
 //@route  POST api/posts
 //@desc   Create post
-//@acces  Public
+//@acces  Private
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
     const { errors, isValid } = validatePostInput(req.body);
     //Check validation
