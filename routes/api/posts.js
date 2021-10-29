@@ -62,6 +62,12 @@ router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, re
     Profile.findOne({ user: req.user.id })
         .then(profile => {
             Post.findById(req.params.id)
+                .then(post => {
+                    //Check for post owner
+                    if (post.user.toString() !== req.user.id) {
+
+                    }
+                })
         })
 })
 
