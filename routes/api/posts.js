@@ -20,7 +20,10 @@ router.get('/test', (req, res) => res.json({
 //@desc   Get posts
 //@acces  Public
 router.get('/', (req, res) => {
-
+    Post.find()
+        .sort({ date: -1 })
+        .then(posts => res.json(posts))
+        .catch(err => res.status(404))
 })
 
 //@route  POST api/posts
