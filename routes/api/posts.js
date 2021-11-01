@@ -99,6 +99,11 @@ router.post('/like/:id', passport.authenticate('jwt', { session: false }), (req,
 //@desc   Unlike post
 //@acces  Private
 router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+    const { errors, isValid } = validatePostInput(req.body);
+    //Check validation
+    if (!isValid) {
+        return res.status(400).json(errors)
+    }
     Profile.findOne({ user: req.user.id })
         .then(profile => {
             Post.findById(req.params.id)
