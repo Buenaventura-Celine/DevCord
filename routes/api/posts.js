@@ -123,4 +123,9 @@ router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), (re
         })
 })
 
+//@route  Post api/posts/comment/:id
+//@desc   Add comment to a post 
+//@acces  Private
+router.post('/comment/:id',)
+
 module.exports = router;
