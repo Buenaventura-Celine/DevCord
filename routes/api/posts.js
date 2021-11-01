@@ -99,11 +99,6 @@ router.post('/like/:id', passport.authenticate('jwt', { session: false }), (req,
 //@desc   Unlike post
 //@acces  Private
 router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body);
-    //Check validation
-    if (!isValid) {
-        return res.status(400).json(errors)
-    }
     Profile.findOne({ user: req.user.id })
         .then(profile => {
             Post.findById(req.params.id)
@@ -132,20 +127,25 @@ router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), (re
 //@desc   Add comment to a post 
 //@acces  Private
 router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+    const { errors, isValid } = validatePostInput(req.body);
+    //Check validation
+    if (!isValid) {
+        return res.status(400).json(errors)
+    }
     Post.findById(req.params.id)
         .then(post => {
             const newComment = {
                 text: req.body.text,
                 name: req.body.name,
                 avatar: req.body.avatar,
-                user: req.body.user,
+                user: req.user.id,
             }
 
             //Add to comments array
             post.comments.unshift(newComment);
 
             //Save 
-            post.save.then(post => res.json(post))
+            post.save().then(post => res.json(post))
         })
         .catch(err => res.status(404).json({ postnotfound: 'No post found' }))
 })
