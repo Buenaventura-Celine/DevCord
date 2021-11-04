@@ -12,12 +12,22 @@ class Register extends Component {
             errors: {}
         }
         this.onChange = this.onChange.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
     }
 
     onChange(e) {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
+        this.setState({ [e.target.name]: e.target.value })
+    }
+
+    onSubmit(e) {
+        e.preventDefault()
+        const newUser = {
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password,
+            password2: this.state.password2,
+        }
+        console.log(newUser)
     }
 
     render() {
@@ -25,7 +35,7 @@ class Register extends Component {
             <section class="container">
                 <h1 className="large text-primary">Sign Up</h1>
                 <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
-                <form className="form" action="create-profile.html">
+                <form className="form" action="create-profile.html" onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <input
                             type="text"
